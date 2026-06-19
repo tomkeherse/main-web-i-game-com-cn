@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tomkeherse.github.io/main-web-i-game-com-cn/sitemap.xml
