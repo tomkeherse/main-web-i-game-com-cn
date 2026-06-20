@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>球友会 · 邻里球局，自在相逢</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fdefd4 0%, #fce1b2 50%, #f7d098 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem;
+      color: #3d2c1a;
+      line-height: 1.6;
+    }
+
+    .card {
+      max-width: 780px;
+      width: 100%;
+      background: rgba(255, 250, 240, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 40px 40px 32px 32px;
+      box-shadow: 0 15px 35px rgba(150, 90, 30, 0.20), 0 6px 12px rgba(0,0,0,0.04);
+      padding: 2.8rem 2.5rem 2.8rem 2.5rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      color: #4f351c;
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+      border-left: 6px solid #dba979;
+      padding-left: 1.2rem;
+    }
+
+    .subhead {
+      font-size: 1.15rem;
+      color: #785c3a;
+      margin: 0.2rem 0 2rem 1.8rem;
+      font-weight: 380;
+      letter-spacing: 0.02em;
+    }
+
+    .highlight-box {
+      background: #f9ecd6;
+      padding: 1.2rem 1.6rem;
+      border-radius: 28px;
+      margin: 2rem 0 1.6rem 0;
+      border: 1px solid #eedbc2;
+    }
+
+    .highlight-box p {
+      font-size: 1.1rem;
+      margin: 0.2rem 0;
+    }
+
+    .feature-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.1rem;
+      margin: 2rem 0 1.8rem 0;
+    }
+
+    .feature-item {
+      flex: 1 1 180px;
+      background: white;
+      border-radius: 28px;
+      padding: 1.2rem 1.2rem 1.4rem 1.2rem;
+      box-shadow: 0 5px 15px rgba(160, 100, 40, 0.08);
+      border: 1px solid #f3e0c8;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(160, 100, 40, 0.12);
+    }
+
+    .feature-item h3 {
+      font-size: 1.25rem;
+      font-weight: 550;
+      margin-bottom: 0.4rem;
+      color: #5a3f22;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .feature-item p {
+      font-size: 0.95rem;
+      color: #5e4b31;
+    }
+
+    .scene-section {
+      margin: 2rem 0 1.6rem 0;
+      padding: 1.2rem 0;
+      border-top: 1px dashed #dcc7ab;
+      border-bottom: 1px dashed #dcc7ab;
+    }
+
+    .scene-section h2 {
+      font-size: 1.5rem;
+      font-weight: 470;
+      margin-bottom: 0.8rem;
+      color: #4a3520;
+    }
+
+    .scene-list {
+      list-style: none;
+    }
+
+    .scene-list li {
+      margin-bottom: 0.7rem;
+      padding-left: 1.8rem;
+      position: relative;
+      font-size: 1rem;
+    }
+
+    .scene-list li::before {
+      content: "⚽";
+      position: absolute;
+      left: 0;
+      color: #b97f4a;
+    }
+
+    .note-card {
+      background: #f5eee3;
+      border-radius: 28px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.8rem 0 1.8rem 0;
+      border-left: 6px solid #c8a177;
+    }
+
+    a {
+      color: #7f5e34;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid #e3c7a5;
+      transition: border-color 0.2s, color 0.2s;
+      padding-bottom: 1px;
+    }
+
+    a:hover {
+      border-bottom-color: #7f5e34;
+      color: #4a3119;
+    }
+
+    .faq-mini {
+      margin: 2rem 0 0.8rem 0;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.9rem;
+      background: white;
+      border-radius: 40px;
+      padding: 0.4rem 1.4rem 0.6rem 1.4rem;
+      border: 1px solid #efdbc2;
+      transition: background 0.1s;
+    }
+
+    .faq-mini details[open] {
+      background: #faf1e3;
+    }
+
+    .faq-mini summary {
+      font-weight: 500;
+      color: #4f351c;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .faq-mini p {
+      margin: 0.5rem 0 1rem 0;
+      color: #4f3d28;
+    }
+
+    .footer-note {
+      margin-top: 2.2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #856f51;
+      border-top: 1px solid #eddcc6;
+      padding-top: 1.4rem;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2rem;
+        padding-left: 0.8rem;
+      }
+      .subhead {
+        margin-left: 0.8rem;
+        font-size: 1rem;
+      }
+      .feature-item {
+        flex: 1 1 100%;
+      }
+      .highlight-box {
+        padding: 1rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>球友会 · 身边球场</h1>
+    <div class="subhead">不打广告，只约球——日常赛事与自由组队</div>
+
+    <!-- 摘要/亮点 -->
+    <div class="highlight-box">
+      <p>🏐 无论是足球、篮球还是羽毛球，<strong>球友会</strong> 帮你找到附近水平相近的球局。没有营销话术，只有真实的约球记录和场地信息。</p>
+    </div>
+
+    <!-- 特点卡片 -->
+    <div class="feature-grid">
+      <div class="feature-item">
+        <h3>📋 真实球局</h3>
+        <p>用户自发发布的约球信息，注明时间、地点、人数缺口。不虚构热度，不刷虚假报名。</p>
+      </div>
+      <div class="feature-item">
+        <h3>📍 场地盲盒</h3>
+        <p>收录城市中球场、球馆、社区空地，附带实拍和交通提示，甚至有些免费野场。</p>
+      </div>
+      <div class="feature-item">
+        <h3>🧑‍🤝‍🧑 同城圈</h3>
+        <p>按区域或运动分类的小组，方便交流战术、二手装备、拼车去球场。无算法强推。</p>
+      </div>
+    </div>
+
+    <!-- 使用场景（使用建议） -->
+    <div class="scene-section">
+      <h2>🍃 这样用更顺手</h2>
+      <ul class="scene-list">
+        <li><strong>上班族午间局</strong> – 在附近体育馆或公司楼下场地，凑满4人就能开场，球友会常有人发起30分钟快闪局。</li>
+        <li><strong>周末亲子运动</strong> – 搜索带围栏或灯光的小场，查看历史评价，避免包场被鸽。</li>
+        <li><strong>临时转装备</strong> – 论坛区发布二手护具、球鞋，写明成色和自提地点，面交更省心。</li>
+        <li><strong>出差找组织</strong> – 到陌生城市，先看当地球友会分舵，私信队长确认是否还有空位。</li>
+      </ul>
+    </div>
+
+    <!-- 可信但克制的访问说明 -->
+    <div class="note-card">
+      <p>🔍 球友会只是一个约球信息聚合平台，不组织活动，亦不收取中介费用。所有球局均由用户自行发起和参与，请务必留意人身与财物安全，运动前充分热身。<br>
+      若想浏览当前城市有哪些活跃球局，可前往 <a href="https://sport-qiuyouhui.com">球友会</a> 查看每日动态列表。</p>
+    </div>
+
+    <!-- FAQ 摘要（偏生活问答） -->
+    <div class="faq-mini">
+      <details>
+        <summary>🙋 球友会跟那些体育App有什么不同？</summary>
+        <p>没有排行榜、没有付费会员、不卖课。更像一个布告栏，大家贴出打球需求，你自己决定跟谁联系。</p>
+      </details>
+      <details>
+        <summary>⚙️ 需要注册才能看到内容吗？</summary>
+        <p>浏览球局和场地信息不需要注册。但如果你想发布活动或报名，需要快速创建账号（仅需昵称和手机号，不收集多余信息）。</p>
+      </details>
+      <details>
+        <summary>🏀 场地信息准不准？</summary>
+        <p>大部分信息由用户提交，管理组会抽样核实。部分球场会标注“近期有施工”或“灯光时间调整”，建议出发前看一眼最新留言。</p>
+      </details>
+    </div>
+
+    <div class="footer-note">
+      ⚡ 所有球局均为自发组织，参与即视为同意风险自担。<br>
+      希望每一次挥汗都遇到合拍的伙伴。
+    </div>
+  </div>
+</body>
+</html>
