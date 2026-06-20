@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于百家乐 | 信息卡片介绍页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Helvetica, Arial, sans-serif;
+            background-color: #f7f4ed;
+            color: #2c2b28;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .page {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        /* 主视觉区 —— 柔和卡片感 */
+        .hero {
+            background: #ffffff;
+            border-radius: 48px 16px 48px 16px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+
+        .hero::after {
+            content: "✦";
+            font-size: 3.2rem;
+            color: #c5b9a0;
+            position: absolute;
+            right: 1.8rem;
+            bottom: 0.6rem;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #3d392f;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #5d5a51;
+            max-width: 90%;
+        }
+
+        /* 卡片网格 —— 用途卡片 + 适合人群 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 28px 8px 28px 8px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 480;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #dacdaf;
+            padding-left: 0.9rem;
+            color: #3d392f;
+        }
+
+        .card ul, .card p {
+            font-size: 1rem;
+            color: #4b4840;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 0.4rem 0 0.4rem 1.6rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "·";
+            font-weight: bold;
+            color: #b8aa8c;
+            position: absolute;
+            left: 0.2rem;
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        /* 引用 / 提示框 */
+        .quote-box {
+            background: #eeebe4;
+            border-radius: 40px 8px 40px 8px;
+            padding: 2rem 2.5rem;
+            margin: 2.8rem 0;
+            border-left: 0;
+            position: relative;
+        }
+
+        .quote-box p {
+            font-style: normal;
+            font-size: 1.08rem;
+            color: #3a3832;
+            line-height: 1.7;
+        }
+
+        .quote-box .source {
+            display: block;
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #8a8579;
+            letter-spacing: 0.02em;
+        }
+
+        .quote-box::before {
+            content: "“";
+            font-size: 4rem;
+            color: #d2c3a5;
+            position: absolute;
+            left: 0.6rem;
+            top: -0.2rem;
+            opacity: 0.4;
+            line-height: 1;
+            font-family: serif;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2.2rem;
+            margin: 2rem 0 2.8rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .link-paragraph p {
+            font-size: 1.04rem;
+            color: #3f3c36;
+            margin-bottom: 1rem;
+        }
+
+        .link-paragraph a {
+            color: #6f5e3e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #d4c7af;
+            font-weight: 480;
+            transition: color 0.15s;
+        }
+
+        .link-paragraph a:hover {
+            color: #3d3021;
+            text-decoration-color: #9b8b72;
+        }
+
+        /* FAQ 小摘要 */
+        .faq-mini {
+            background: transparent;
+            border: 1px solid #e2dbd0;
+            border-radius: 40px 12px 40px 12px;
+            padding: 2rem 2.2rem;
+            margin: 2rem 0;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.3rem;
+            font-weight: 460;
+            margin-bottom: 1.2rem;
+            color: #3b3830;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            color: #49453d;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item p {
+            color: #5e5a4f;
+            margin-left: 0.2rem;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ded8cc;
+            margin: 2.5rem 0 1rem;
+            opacity: 0.5;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #8b867a;
+            padding: 2rem 0 0.5rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero {
+                padding: 2rem 1.6rem;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero p {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 1.4rem;
+            }
+
+            .quote-box, .link-paragraph, .faq-mini {
+                padding: 1.6rem 1.4rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 主视觉 hero -->
+        <div class="hero">
+            <h1>关于百家乐<br>一种纸牌节奏与日常心绪</h1>
+            <p>围绕着“庄”“闲”两门，牌面之下是一种简单的推演。很多人从游戏本身开始接触 <a href="https://site-baijiale.com" style="color: #6f5e3e; text-decoration: underline; text-underline-offset: 2px; font-weight: 500;">百家乐</a>，而后慢慢感受到其中蕴含的观察与选择。它不复杂，却足够让人专注片刻。</p>
+        </div>
+
+        <!-- 用途卡片 + 适合人群 双栏 -->
+        <div class="grid-2col">
+            <div class="card">
+                <h2>常见用途</h2>
+                <ul>
+                    <li>朋友聚会中的破冰环节</li>
+                    <li>熟悉纸牌规则的基础场景</li>
+                    <li>培养对概率的直观感受</li>
+                    <li>放松时刻的思维切换</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>适合人群</h2>
+                <ul>
+                    <li>对纸牌玩法好奇的新手</li>
+                    <li>喜欢观察局面变化的人</li>
+                    <li>追求简单社交互动的人</li>
+                    <li>想了解西方桌牌文化的人</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 引用块：生活化但正式 -->
+        <div class="quote-box">
+            <p>纸牌只是媒介，真正有趣的是在三五局之间，不同人流露出的决策风格——有人谨慎跟注，有人偏好转换，有人始终不露声色。这些细微之处，才是桌面上真正耐人寻味的部分。</p>
+            <span class="source">—— 玩家闲聊摘录</span>
+        </div>
+
+        <!-- 自然链接段落（嵌入式链接） -->
+        <div class="link-paragraph">
+            <p>作为一种经典的纸牌品类，<a href="https://site-baijiale.com">百家乐</a>在全球许多地区的休闲场合都自然出现。赌场电影里常见它的身影，但剥离戏剧效果，它本身只是一种规则清晰的牌局。很多人最初只是路过一张桌子，后来发现它比自己想象中更安静、更讲究时机。有时候，仅仅是观察荷官派牌的动作，就能让人感到一种独特的秩序感。</p>
+            <p>不必带着复杂的预设去接触它。拿一副牌，了解庄闲的基本胜负判定，然后尝试一局——你会发现，当牌面亮出的一瞬，那种微妙的期待才是真正的吸引力。</p>
+        </div>
+
+        <!-- FAQ 小摘要 -->
+        <div class="faq-mini">
+            <h3>一些常见疑问</h3>
+            <div class="faq-item">
+                <strong>百家乐需要很多技巧吗？</strong>
+                <p>不需要。它的规则非常简单，几乎完全依赖牌面本身，适合纯粹体验过程。</p>
+            </div>
+            <div class="faq-item">
+                <strong>适合一个人玩吗？</strong>
+                <p>多数时候是多人游戏，但也有线上版本或单机模式可以练习理解规则。</p>
+            </div>
+            <div class="faq-item">
+                <strong>和其他纸牌游戏相比有什么不同？</strong>
+                <p>它更偏向于固定的发牌流程，玩家的选择空间少，节奏更接近一种仪式感。</p>
+            </div>
+        </div>
+
+        <hr>
+        <div class="footer-note">
+            —— 信息卡片风格 · 关于百家乐 ——
+        </div>
+    </div>
+</body>
+</html>
